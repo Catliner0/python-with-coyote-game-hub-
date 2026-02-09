@@ -178,12 +178,14 @@ def minus_max(url,id,a,way):
     info = getinfo(url, id)
     level_change=info["level_change"]
     level_min = info["level_min"]
+    level_max = info["level_max"]
     a=-a
     if way=="not":
-        level_change=level_change+a
+        level_change=level_change-a
     else:
         level_change=level_change+a
-    level_min=level_min+a
+    level_max=level_max+a
+    level_min=level_max-level_change
     if level_min<0:
         level_min=0
     post1 = {
