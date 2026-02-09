@@ -68,6 +68,7 @@ def add_min(url,id,add,way):
         if level_max > level_limit:
             level_change = 0
     else:
+        level_min = level_min + add
         level_change=level_change-add
     post1 = {
         "strength": {
@@ -181,7 +182,7 @@ def minus_max(url,id,a,way):
     if way=="not":
         level_min=level_min+a
     else:
-        level_change=level_change+a
+        level_change=level_change-a
     if level_min<0:
         level_min=0
     post1 = {
