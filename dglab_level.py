@@ -62,14 +62,13 @@ def add_min(url,id,add,way):
     level_min = info["level_min"]
     level_change = info["level_change"]
     if way=="not":
-        level_min=level_min+add
-        level_change=level_change-add
-    else:
-        level_limit=info["level_limit"]
+        level_limit = info["level_limit"]
         level_min = level_min + add
-        level_max=level_min+level_change
-        if level_max>level_limit:
-            level_change=level_limit-level_min
+        level_max = level_min + level_change
+        if level_max > level_limit:
+            level_change = 0
+    else:
+        level_change=level_change-add
     post1 = {
         "strength": {
             "set": level_min
@@ -92,7 +91,9 @@ def minus_min(url, id, add, way):
     level_min = info["level_min"]
     level_change = info["level_change"]
     if way == "not":
-        level_change = level_change +add
+        pass
+    else:
+        level_change=level_change+add
     level_min = level_min - add
     if level_min<0:
         level_min=0
@@ -153,10 +154,9 @@ def add_max(url,id,a,way):
     if level_max+a>level_limit:
         a=level_limit-level_max
     if way=="not":
-        level_change=level_change+a
+        level_min=level_min+a
     else:
         level_change=level_change+a
-        level_min=level_min+a
     post1 = {
         "strength": {
             "set": level_min
@@ -179,9 +179,9 @@ def minus_max(url,id,a,way):
     level_change=info["level_change"]
     level_min = info["level_min"]
     if way=="not":
-        level_change=level_change+a
+        level_min=level_min+a
     else:
-        level_change=level_change-a
+        level_change=level_change+a
     if level_min<0:
         level_min=0
     post1 = {
